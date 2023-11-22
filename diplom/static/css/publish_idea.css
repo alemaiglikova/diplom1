@@ -1,0 +1,30 @@
+        body {
+            background-image: url('https://res.infoq.com/articles/edge-computing-5g/en/headerimage/header-13-1614683413201.jpg'); /* Замените на путь к вашей картине фона */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            background-color: rgba(33, 64, 150, 0.8); /* Темно-синий цвет с прозрачностью */
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff; /* Белый цвет текста */
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #001f3f; /* Темно-синий цвет кнопки */
+            border-color: #001f3f; /* Темно-синий цвет границы кнопки */
+        }

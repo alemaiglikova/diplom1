@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="work-card rounded p-3">
+                <h4>{{ work.title }}</h4>
+                <p><strong>Описание:</strong> {{ work.description }}</p>
+                <p><strong>Требования:</strong> {{ work.requirements }}</p>
+                <p><strong>Контакты:</strong> {{ work.contacts }}</p>
+                <p><strong>Дата публикации:</strong> {{ work.publish_date }}</p>
+                <p><strong>Опубликовано пользователем:</strong> {{ work.published_by }}</p>
+
+                <!-- Добавьте проверку на администратора или пользователя -->
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser or user == work.published_by %}
+                        <form method="post" action="{% url 'delete_work' work.pk %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Удалить работу</button>
+                        </form>
+                        <a href="{% url 'edit_work' work.pk %}" class="btn btn-primary" style="background-color: #0056b3; border-color: #0056b3;">Редактировать работу</a>
+                        <a href="{% url 'work_responses' work.pk %}" class="btn btn-primary" style="background-color: #0056b3; border-color: #0056b3;">Просмотреть отклики</a>
+                    {% endif %}
+                   <a href="{% url 'submit_response' work.pk %}" class="btn btn-primary" style="background-color: #0056b3; border-color: #0056b3;">Отклик</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

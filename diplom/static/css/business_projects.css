@@ -1,0 +1,90 @@
+ body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav.navbar {
+            background-color: #001f3f; /* Темно-синий цвет хедера */
+            padding: 15px;
+        }
+
+        a.navbar-brand,
+        a.nav-link {
+            color: #fff !important; /* Белый текст для ссылок */
+            font-weight: bold;
+        }
+
+        a.nav-link:hover {
+            color: #e0e0e0 !important; /* Измененный цвет при наведении */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff !important; /* Белый цвет для иконки бургера */
+        }
+
+        form.navbar-nav .nav-link {
+            border: 2px solid #fff !important; /* Белая обводка для кнопки "Выход" */
+            border-radius: 20px; /* Круглая форма для обводки */
+            padding: 8px 16px;
+            margin-left: 10px; /* Добавим небольшой отступ между кнопками */
+            color: #fff !important;
+        }
+
+        form.navbar-nav .nav-link:hover {
+            background-color: #fff !important; /* Белый цвет при наведении */
+            color: #001f3f; /* Темно-синий цвет для текста при наведении */
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+
+        .container.mt-4 {
+            margin-top: 4rem;
+        }
+
+        .container.mt-4 .leaders {
+            background-color: #001f3f;
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container.mt-4 .leaders a.btn {
+            margin-top: 10px;
+        }
+
+        .business-idea {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .like-button {
+            background-color: #4e79a3;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .like-button:hover {
+            background-color: #405c80;
+        }
+
+        .like-count {
+                margin-left: 30px;
+
+        }
+
+        .pagination.mt-3 {
+            margin-top: 3rem;
+        }
+           .mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+    margin-left: 150px;}

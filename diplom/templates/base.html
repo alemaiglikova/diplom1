@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Название вашего сайта</title>
+    <!-- Подключаем Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Подключаем Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключаем стили для иконок Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vacancy_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/work_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/work_detail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vacancy_detail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
+</head>
+
+<body>
+
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <a class="navbar-brand" href="#">Карпоративный сайт</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'business_projects' %}">Бизнес-проекты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'work_list' %}">Вакансии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'vacancy_list' %}">Резюме</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'get_products' %}">Товары из 1С</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'rooms' %}">Чат</a>
+                </li>
+                <form class="navbar-nav" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link btn btn-outline-light">Выход</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

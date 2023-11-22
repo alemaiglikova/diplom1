@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="workTitle">Название работы</label>
+                        <input type="text" class="form-control" id="workTitle" name="title" placeholder="Введите название работы" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Описание</label>
+                        <textarea class="form-control" id="description" name="description" rows="5" placeholder="Введите описание работы" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="requirements">Требования</label>
+                        <textarea class="form-control" id="requirements" name="requirements" rows="5" placeholder="Введите требования к кандидатам" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contacts">Контакты</label>
+                        <input type="text" class="form-control" id="contacts" name="contacts" placeholder="Введите контактные данные" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="background-color: #0056b3; border-color: #0056b3;">Опубликовать работу</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

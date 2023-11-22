@@ -1,0 +1,11 @@
+        .resume-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .resume-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; /* Это обеспечит правильное масштабирование изображения */
+    margin-left: 120px;
+}

@@ -1,0 +1,39 @@
+  body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://res.infoq.com/articles/edge-computing-5g/en/headerimage/header-13-1614683413201.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .leaderboard-container {
+            background-color: #112e54; /* Спокойный синий фон */
+            color: #fff; /* Белый текст */
+            padding: 20px;
+            border-radius: 10px;
+            width: 70%; /* Ширина блока */
+            max-width: 600px; /* Максимальная ширина блока */
+            margin: auto; /* Центрирование блока */
+        }
+
+        .leaderboard-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .leaderboard-item {
+            background-color: rgba(255, 255, 255, 0.7); /* Белый с прозрачностью */
+            padding: 35px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Список Вакансий</h2>
+            <form method="get" action="{% url 'work_list' %}">
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" name="search" id="searchWork" placeholder="Поиск по вакансиям">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn" style="background-color: #001f3f; color: #fff;">Поиск</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 text-right">
+            <a href="{% url 'create_work' %}" class="btn" style="background-color: #001f3f; color: #fff;">Создать Вакансию</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Здесь будут данные вакансий в формате Django Template -->
+        {% for work in works %}
+            <div class="col-md-12">
+                <div class="work-card rounded p-3 mb-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4>{{ work.title }}</h4>
+                            <p><strong>Описание:</strong> {{ work.description }}</p>
+                            <p><strong>Дата публикации:</strong> {{ work.publish_date }}</p>
+                            <p><strong>Опубликовано пользователем:</strong> {{ work.published_by }}</p>
+                            <a href="{% url 'work_detail' work.pk %}" class="btn" style="background-color: #001f3f; color: #fff;">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="pagination mt-3">
+    <span class="step-links">
+        {% if works.has_previous %}
+            <a href="?page=1">&laquo; первая</a>
+            <a href="?page={{ works.previous_page_number }}">предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ works.number }} из {{ works.paginator.num_pages }}.
+        </span>
+
+        {% if works.has_next %}
+            <a href="?page={{ works.next_page_number }}">следующая</a>
+            <a href="?page={{ works.paginator.num_pages }}">последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

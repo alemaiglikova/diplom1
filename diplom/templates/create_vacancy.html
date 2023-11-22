@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid p-0 m-0" style="height: 100%; background-image: url('https://res.infoq.com/articles/edge-computing-5g/en/headerimage/header-13-1614683413201.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="row justify-content-center align-items-center m-0" style="height: 100%;">
+        <div class="col-md-6 p-4 rounded" style="background-color: #214096; color: #fff;">
+            <h2 class="text-center mb-4">Опубликуй свое резюме!</h2>
+            <form method="post" action="{% url 'create_vacancy' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="vacancy">Вакансия</label>
+                    <input type="text" class="form-control" id="vacancy" name="vacancy" required>
+                </div>
+                <div class="form-group">
+                    <label for="full_name">ФИО</label>
+                    <input type="text" class="form-control" id="full_name" name="full_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Возраст</label>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">Город</label>
+                    <input type="text" class="form-control" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Опыт работы (в виде описания)</label>
+                    <textarea class="form-control" id="experience" name="experience" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="last_experience">Последний опыт работы</label>
+                    <input type="text" class="form-control" id="last_experience" name="last_experience" required>
+                </div>
+                <div class="form-group">
+                    <label for="about">О себе</label>
+                    <textarea class="form-control" id="about" name="about" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Номер телефона</label>
+                    <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="face_photo">Фотография</label>
+                    <input type="file" class="form-control" id="face_photo" name="face_photo" accept="image/*">
+                </div>
+
+                <button type="submit" class="btn btn-dark" style="background-color: #001f3f; border-color: #001f3f;">Опубликовать</button>
+            </form>
+            {% if form.errors %}
+                <div class="alert alert-danger mt-3">
+                    <strong>Ошибка!</strong> Пожалуйста, проверьте введенные данные.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

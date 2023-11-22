@@ -1,0 +1,132 @@
+  /* Общие стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #7590c9;
+
+            color: #fff; /* Цвет текста */
+        }
+
+        /* Стили для контейнера */
+        .container {
+            margin-top: 50px;
+        }
+
+        /* Стили для рамки */
+        .border {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        /* Стили для кнопок */
+        .btn-primary,
+        .btn-danger {
+            border-radius: 20px;
+            width: 48%; /* Ширина кнопок */
+        }
+
+        .btn-primary {
+            background-color: #001f3f; /* Темно-синий цвет */
+            border-color: #001f3f;
+        }
+
+        .btn-danger {
+            background-color: #dc3545; /* Красный цвет для кнопки удаления */
+            border-color: #dc3545;
+        }
+
+        .btn-primary:hover,
+        .btn-danger:hover {
+            background-color: #0056b3; /* Темно-синий цвет при наведении */
+            border-color: #0056b3;
+        }
+
+        /* Стили для карточек */
+        .card {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        /* Стили для формы комментариев */
+        .comment-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn-send {
+            border-radius: 20px;
+            padding: 10px 20px;
+        }
+
+        /* Стили для комментариев */
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .comment-card {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-body {
+            padding: 15px;
+        }
+
+        /* Стили для навигационной панели */
+        nav.navbar {
+            background-color: #001f3f; /* Темно-синий цвет хедера */
+            padding: 15px;
+            border-radius: 0; /* Убираем закругление у хедера */
+            margin-bottom: 20px; /* Добавим отступ снизу */
+        }
+
+        a.navbar-brand,
+        a.nav-link {
+            color: #fff !important; /* Белый текст для ссылок */
+            font-weight: bold;
+        }
+
+        a.nav-link:hover {
+            color: #e0e0e0 !important; /* Измененный цвет при наведении */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff !important; /* Белый цвет для иконки бургера */
+        }
+
+        form.navbar-nav .nav-link {
+            border: 2px solid #fff !important; /* Белая обводка для кнопки "Выход" */
+            border-radius: 20px; /* Круглая форма для обводки */
+            padding: 8px 16px;
+            margin-left: 10px; /* Добавим небольшой отступ между кнопками */
+            color: #fff !important;
+        }
+
+        form.navbar-nav .nav-link:hover {
+            background-color: #fff !important; /* Белый цвет при наведении */
+            color: #001f3f; /* Темно-синий цвет для текста при наведении */
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+
+        .comment {
+        margin-top: 300px;
+        margin-left: 150px
+
+        }
+        .comment-body p.card-text {
+        color: #000; /* Черный цвет текста */
+        }

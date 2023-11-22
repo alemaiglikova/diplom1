@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Криптовалюты и новости</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/first_home.css' %}">
+
+</head>
+<body>
+    <div class="white-container">
+        <h1>Для больших возможностей</h1>
+        <p>Войдите или зарегистрируйтесь в аккаунт</p>
+        <a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
+        <a href="{% url 'register' %}" class="btn btn-secondary">Зарегистрироваться</a>
+
+        <div class="crypto-info">
+            <h6>Криптовалюта на данный момент:</h6>
+            <p>Bitcoin price: ${{ bitcoin_price }}</p>
+            <p>Ethereum price: ${{ ethereum_price }}</p>
+        </div>
+
+        <!-- Здесь размещаем блок с парсингом криптовалюты и новостей -->
+        <div class="news-container">
+            <h1 class="mb-3">Новости</h1>
+            {% if news_data %}
+                <div class="row">
+                    {% for news_item in news_data %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <img src="{{ news_item.image_url }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ news_item.title }}</h5>
+                                    <p class="card-text">{{ news_item.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Нет доступных новостей.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

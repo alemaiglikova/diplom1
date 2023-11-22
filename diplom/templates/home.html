@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карпоративный сайт</title>
+    <!-- Подключаем Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Подключаем Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключаем стили для иконок Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vacancy_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/work_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/work_detail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vacancy_detail.css' %}">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://res.infoq.com/articles/edge-computing-5g/en/headerimage/header-13-1614683413201.jpg'); /* Замените 'your-background-image.jpg' на путь к вашему изображению */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        nav.navbar {
+            background-color: #001f3f; /* Темно-синий цвет хедера */
+            padding: 15px;
+        }
+
+        a.navbar-brand,
+        a.nav-link {
+            color: #fff !important; /* Белый текст для ссылок */
+            font-weight: bold;
+        }
+
+        a.nav-link:hover {
+            color: #e0e0e0 !important; /* Измененный цвет при наведении */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff !important; /* Белый цвет для иконки бургера */
+        }
+
+        form.navbar-nav .nav-link {
+            border: 2px solid #fff !important; /* Белая обводка для кнопки "Выход" */
+            border-radius: 20px; /* Круглая форма для обводки */
+            padding: 8px 16px;
+            margin-left: 10px; /* Добавим небольшой отступ между кнопками */
+            color: #fff !important;
+        }
+
+        form.navbar-nav .nav-link:hover {
+            background-color: #fff !important; /* Белый цвет при наведении */
+            color: #001f3f; /* Темно-синий цвет для текста при наведении */
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+
+        .white-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            text-align: center;
+            overflow: hidden;
+
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1, h6 {
+            color: #000080;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            width: 100%;
+            max-width: 200px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #001f3f;
+            border-color: #001f3f;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .crypto-info {
+            margin-top: 30px;
+        }
+
+        .news-container {
+            margin-top: 200px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Карпоративный сайт</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'business_projects' %}">Бизнес-проекты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'work_list' %}">Вакансии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'vacancy_list' %}">Резюме</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'get_products' %}">Товары из 1С</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'rooms' %}">Чат</a>
+                </li>
+                <form class="navbar-nav" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link btn btn-outline-light">Выход</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="white-container">
+
+
+        <div class="crypto-info container mt-4">
+            <h6 class="mb-3">Криптовалюта на данный момент:</h6>
+            <p>Bitcoin price: ${{ bitcoin_price }}</p>
+            <p>Ethereum price: ${{ ethereum_price }}</p>
+        </div>
+
+        <div class="news-container container mt-4">
+            <h1 class="mb-3 centered-text">Новости</h1>
+            {% if news_data %}
+                <div class="row">
+                    {% for news_item in news_data %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ news_item.image_url }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ news_item.title }}</h5>
+                                    <p class="card-text">{{ news_item.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Нет доступных новостей.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

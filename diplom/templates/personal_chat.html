@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Personal Chat with {{ room.name }}</h1>
+  <div id="chat">
+    {% for message in messages %}
+      <p><strong>{{ message.user.username }}:</strong> {{ message.content }}</p>
+    {% endfor %}
+  </div>
+  <form id="chat-form">
+    {% csrf_token %}
+    <input type="text" id="message" placeholder="Type a message..." required>
+    <button type="submit">Send</button>
+  </form>
+  <script>
+    // Add JavaScript for handling the chat functionality here.
+  </script>
+{% endblock %}

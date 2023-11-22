@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать комнату</title>
+</head>
+<body style="background-color: #001f3f; color: #fff; font-family: Arial, sans-serif; text-align: center; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; padding: 0;">
+
+    <div style="background-color: #3498db; padding: 20px; border-radius: 10px; width: 300px;">
+
+        <h1 style="font-size: 24px; margin-bottom: 20px;">Создать комнату</h1>
+
+        <form method="post" action="{% url 'create_room' %}" style="text-align: left;">
+            {% csrf_token %}
+            <label for="name" style="font-size: 18px;">Название комнаты:</label><br>
+            <input type="text" id="name" name="name" required style="width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box;"><br>
+            <label for="slug" style="font-size: 18px;">Slug комнаты:</label><br>
+            <input type="text" id="slug" name="slug" required style="width: 100%; padding: 8px; margin-bottom: 20px; box-sizing: border-box;"><br>
+            <button type="submit" style="background-color: #001f3f; color: #fff; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Создать комнату</button>
+        </form>
+
+    </div>
+
+</body>
+</html>

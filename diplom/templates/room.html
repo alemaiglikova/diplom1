@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <div style="padding: 20px; background-color: #001f3f;">
+            <h1 style="font-size: 24px; color: #fff;">{{room.name}}</h1>
+        </div>
+
+        <div style="width: 50%; margin: 20px auto; padding: 20px; border: 2px solid #001f3f; border-radius: 10px; background-color: #fff;">
+            <div class="chat-messages" style="margin: 10px 0; padding: 10px; overflow-y: auto; max-height: 300px;">
+                {% for message in messages %}
+                    <div style="padding: 15px; background-color: #e6e6e6; border-radius: 8px; margin-bottom: 10px;">
+                        <p style="font-weight: bold; margin: 0;">{{message.user.username}}</p>
+                        <p style="margin: 0;">{{ message.content }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div style="width: 50%; margin: 20px auto;">
+            <form method="post" action="." style="display: flex;">
+                {% csrf_token %}
+                <input type="text" name="content" style="flex: 1; padding: 10px; border: 2px solid #001f3f; border-radius: 5px;" placeholder="Ваше сообщение..."
+                    id="chat-message-input" />
+                <button style="padding: 10px 15px; border: none; border-radius: 5px; background-color: #001f3f; color: #fff; cursor: pointer;"
+                    id="chat-message-submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+{{room.slug|json_script:"json-roomname" }}
+{{request.user.username|json_script:"json-username"}}
+<script>
+    const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+    const userName = JSON.parse(document.getElementById('json-username').textContent);
+
+    const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + roomName + '/');
+    // 'ws://127.0.0.1:8000/ws/first/'
+    // браузер открывает вебсокет и "слушает" сообщения от сервера
+
+    // chatSocket.close() // принудительное закрытие сокета
+
+    chatSocket.onmessage = function(e) {
+        // каждый раз, когда приходит сообщение, он его добавлени на страницу HTML
+        const data = JSON.parse(e.data);
+        //
+        if(data.message){
+            let html = '<div class="p-4 bg-gray-200 rounded-xl">';
+                html+=  '<p class="font-semibold">' + data.username + '</p>';
+                html +=  '<p>' + data.message + '</p></div>';
+            document.querySelector('#chat-messages').innerHTML += html;
+            scrollToBottom();
+        } else{
+        }
+    }
+    chatSocket.onclose = function(e) {
+        console.log("Bye!")
+    }
+    document.querySelector('#chat-message-submit').onclick = function(e){
+        // сообщение при попытке отправиться, уходит по вебсокету
+
+        e.preventDefault()
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': userName,
+            'room': roomName
+        }));
+        messageInputDom.value = '';
+        return false;
+    }
+    function scrollToBottom() {
+        const objDiv = document.querySelector('#chat-messages');
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+    scrollToBottom();
+    </script>
+</body>
+</html>
+{% endblock %}

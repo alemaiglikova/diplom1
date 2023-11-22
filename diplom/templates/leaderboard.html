@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/leaderboard.css' %}">
+
+    <title>Лидеры</title>
+    {% load static %}
+
+</head>
+<body>
+    <div class="container leaderboard-container">
+        <h1>Топ 10 лидеров</h1>
+        <ul class="leaderboard-list">
+            {% for likes, username in leaderboard %}
+                <li class="leaderboard-item">{{ username }} - {{ likes }} лайков</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5 text-center" style="position: relative; background-image: url('https://res.infoq.com/articles/edge-computing-5g/en/headerimage/header-13-1614683413201.jpg'); background-size: cover; background-position: center center; height: 100vh;">
+    <h2 style="color: white;">Отправить отклик</h2>
+    <form id="responseForm" action="{% url 'submit_response' work.pk %}" method="post" style="width: 50%; margin: auto; background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px;">
+      {% csrf_token %}
+      <div class="form-group">
+        <select name="vacancy" class="form-control">
+          {% for vacancy in user_vacancies %}
+            <option value="{{ vacancy.pk }}">{{ vacancy.vacancy }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" style="background-color: #0056b3; border-color: #0056b3;" >Отправить отклик</button>
+    </form>
+  </div>
+{% endblock %}

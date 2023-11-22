@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 style="color: #001f3f;">Резюме, откликнувшиеся на работу "{{ work.title }}"</h2>
+    <div class="row">
+        {% for resume in work.responses.all %}
+            <div class="col-md-12">
+                <div class="resume-card" style="border: 1px solid #001f3f; padding: 15px; margin-bottom: 20px;">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4>{{ resume.vacancy }}</h4>
+                            <p><strong>ФИО:</strong> {{ resume.full_name }}</p>
+                            <p><strong>Возраст:</strong> {{ resume.age }}</p>
+                            <p><strong>Город:</strong> {{ resume.city }}</p>
+                            <p><strong>Последний опыт работы:</strong> {{ resume.last_experience }}</p>
+                            <p><strong>Дата публикации:</strong> {{ resume.created_at }}</p>
+                            <p><strong>Создано:</strong> {{ resume.created_by }}</p>
+                            <a href="{% url 'vacancy_detail' resume.pk %}" class="btn btn-dark rounded" style="background-color: #001f3f; border-color: #001f3f;">Подробнее</a>
+                        </div>
+                        <div class="col-md-4">
+                            {% if resume.face_photo %}
+                                <img src="{{ resume.face_photo.url }}" alt="{{ resume.vacancy }}" class="img-fluid" style="border: 1px solid #001f3f; padding: 10px;">
+                            {% else %}
+                                <p>Фотография отсутствует</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

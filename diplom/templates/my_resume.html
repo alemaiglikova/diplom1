@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Мои Резюме</h2>
+    <div class="row">
+        {% for resume in vacancies %}
+            <div class="col-md-12">
+                <div class="resume-card">
+                    <!-- Здесь выводите информацию о резюме пользователя -->
+                    <h4>{{ resume.vacancy }}</h4>
+                    <p><strong>ФИО:</strong> {{ resume.full_name }}</p>
+                    <p><strong>Возраст:</strong> {{ resume.age }}</p>
+                    <p><strong>Город:</strong> {{ resume.city }}</p>
+                    <p><strong>Последний опыт работы:</strong> {{ resume.last_experience }}</p>
+                    <p><strong>Дата публикации:</strong> {{ resume.created_at }}</p>
+                    <p><strong>Создано:</strong> {{ resume.created_by }}</p>
+                    <a href="{% url 'vacancy_detail' resume.pk %}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

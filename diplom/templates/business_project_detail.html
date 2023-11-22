@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Название вашего сайта</title>
+    <!-- Подключаем Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Подключаем Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключаем стили для иконок Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/business_project_detail.css' %}">
+
+
+</head>
+
+<body>
+
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <a class="navbar-brand" href="#">Карпоративный сайт</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'business_projects' %}">Бизнес-проекты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'work_list' %}">Вакансии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'vacancy_list' %}">Резюме</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'get_products' %}">Товары из 1С</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'rooms' %}">Чат</a>
+                </li>
+                <form class="navbar-nav" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link btn btn-outline-light">Выход</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="border p-3 mb-4">
+                    <h2>{{ project.title }}</h2>
+                    <p>Created by: {{ project.owner.username }}</p>
+                    <p>{{ project.description }}</p>
+                    <p>Likes: {{ project.likes }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% if request.user.is_superuser or request.user == project.owner %}
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-8">
+                <form action="{% url 'delete_business_project' project.pk %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Удалить проект</button>
+                </form>
+                <a href="{% url 'edit_business_project' project.pk %}" class="btn btn-primary ml-2">Редактировать проект</a>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="comment">
+            <div class="col-md-6">
+                <h3>Добавить комментарий</h3>
+                <form method="post" class="comment-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.text.label_tag }}
+                        {{ form.text }}
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-send">Отправить</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-8">
+                <h3>Комментарии</h3>
+                {% for comment in comments %}
+                <div class="card mb-3 comment-card">
+                    <div class="card-body comment-body">
+                        <p class="card-text">{{ comment.text }}</p>
+                        {% if request.user == comment.user %}
+                        <form action="{% url 'delete_comment' comment.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
